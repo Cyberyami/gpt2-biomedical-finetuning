@@ -55,6 +55,12 @@ Run the notebooks in order: `p1 → p2 → p3 → p4`
 
 > Note: Phase 2 saves the domain-adapted model to `./gpt2domain`, which is required by Phases 3 and 4. Phase 4 saves the final model to `./gpt2-instruct-final`.
 
+## Limitations
+
+**Phase 3 — 100% accuracy caveat:** The classifier achieved perfect accuracy, but this should be interpreted carefully. The negative class consisted of synthetically generated sentences (e.g. *"John walked to the store..."*) — artificially simple and structurally nothing like real text. The separation between the two classes was trivially easy. If evaluated against real-world non-biomedical text (news articles, Wikipedia, etc.), accuracy would likely be lower. A more meaningful evaluation would use real general-domain text as negatives.
+
+**Phase 4 — Small instruction set:** The instruction fine-tuning was done on only 50 pairs, which is a very small dataset. The model's responses are reasonable but limited in variety and depth.
+
 ## Tech
 
 - [Hugging Face Transformers](https://huggingface.co/docs/transformers)
